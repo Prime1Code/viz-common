@@ -2,21 +2,29 @@ package com.bestappsintown.visualizer.common.config
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import org.springframework.beans.factory.InitializingBean
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.beans.factory.getBeansWithAnnotation
 import org.springframework.context.ApplicationContext
+import org.springframework.stereotype.Component
+import org.springframework.util.StringUtils
 
-class OkHttpHeaderInterceptor constructor(private val applicationContext: ApplicationContext) : Interceptor {
+@Component
+class OkHttpHeaderInterceptor @Autowired constructor(
+    private val applicationContext: ApplicationContext
+) : Interceptor, InitializingBean {
 
     @Value("\${server.port:error}")
     private lateinit var serverPort: String
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        return Response.Builder()
-            .request(chain.request())
+        val request = chain.request()
+        val newRequest = request.newBuilder()
             .addHeader("MS-Port", serverPort)
             .addHeader("MS-Name", getApplicationName())
             .build()
+        return chain.proceed(newRequest)
     }
 
     fun getApplicationName(): String {
@@ -32,5 +40,11 @@ class OkHttpHeaderInterceptor constructor(private val applicationContext: Applic
         }
 
         return applicationName
+    }
+
+    override fun afterPropertiesSet() {
+        if (!StringUtils.hasText(serverPort)) {
+            throw IllegalArgumentException("serverPort is null")
+        }
     }
 }

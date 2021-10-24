@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBeansWithAnnotation
 import org.springframework.context.ApplicationContext
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
+import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
 import java.io.IOException
@@ -17,8 +18,10 @@ import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class VisualizeServiceClientInterceptor @Autowired constructor(private val applicationContext: ApplicationContext) :
-    HandlerInterceptor {
+@Component
+class VisualizeServiceClientInterceptor @Autowired constructor(
+    private val applicationContext: ApplicationContext
+) : HandlerInterceptor {
 
     private val client = OkHttpClient()
 

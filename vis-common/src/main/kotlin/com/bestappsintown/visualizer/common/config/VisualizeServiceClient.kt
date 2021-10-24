@@ -1,5 +1,6 @@
 package com.bestappsintown.visualizer.common.config
 
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Import
 import java.lang.annotation.Inherited
 
