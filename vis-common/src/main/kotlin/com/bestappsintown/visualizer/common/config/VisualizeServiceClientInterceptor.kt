@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBeansWithAnnotation
 import org.springframework.context.ApplicationContext
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
+import org.springframework.lang.Nullable
 import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
+import org.springframework.web.servlet.ModelAndView
 import java.io.IOException
 import java.net.URI
 import java.util.*
@@ -25,7 +27,7 @@ class VisualizeServiceClientInterceptor @Autowired constructor(
 
     private val client = OkHttpClient()
 
-    override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
+    override fun postHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any, modelAndView: ModelAndView?) {
         try {
             val method = handler as HandlerMethod
             var msPort: String? = request.getHeader("MS-Port")
@@ -74,10 +76,7 @@ class VisualizeServiceClientInterceptor @Autowired constructor(
                     }
                 }
             })
-        } catch (e: ClassCastException) {
-        }
-
-        return true;
+        } catch (e: ClassCastException) {}
     }
 
     companion object {
