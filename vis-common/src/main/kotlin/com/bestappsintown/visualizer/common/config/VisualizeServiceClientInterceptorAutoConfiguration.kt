@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Import
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
+@Import(VisualizeServiceClientInterceptor::class, OkHttpHeaderInterceptor::class)
 @ConditionalOnBean(VisualizeServiceClientMarkerConfiguration.Marker::class)
-class VisualizeServiceClientInterceptorAutoConfiguration : WebMvcConfigurerAdapter() {
+class VisualizeServiceClientInterceptorAutoConfiguration : WebMvcConfigurer {
 
     @Autowired
     lateinit var visualizeServiceClientInterceptor: VisualizeServiceClientInterceptor
