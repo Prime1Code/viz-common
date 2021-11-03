@@ -30,6 +30,9 @@ class VisualizeServiceClientInterceptor @Autowired constructor(
     @Value("\${vsc.vssPort}")
     private lateinit var vssPort: String
 
+    @Value("\${vsc.vssUrl}")
+    private lateinit var vssUrl: String
+
     private val client = OkHttpClient()
 
     override fun postHandle(
@@ -71,7 +74,7 @@ class VisualizeServiceClientInterceptor @Autowired constructor(
             val jsonBody = jacksonObjectMapper().writeValueAsString(ping)
 
             val request = Request.Builder()
-                .url("http://localhost:$vssPort/ping/")
+                .url("$vssUrl:$vssPort/ping/")
                 .post(jsonBody.toRequestBody(MEDIA_TYPE_JSON))
                 .build()
 
@@ -97,6 +100,9 @@ class VisualizeServiceClientInterceptor @Autowired constructor(
     override fun afterPropertiesSet() {
         if (!StringUtils.hasText(vssPort)) {
             throw IllegalArgumentException("vssPort is null")
+        }
+        if (!StringUtils.hasText(vssUrl)) {
+            throw IllegalArgumentException("vssUrl is null")
         }
     }
 }
