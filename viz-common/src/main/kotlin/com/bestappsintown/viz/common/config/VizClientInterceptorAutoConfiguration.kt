@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-@Import(VizClientInterceptor::class, OkHttpHeaderInterceptor::class)
+@Import(VizClientInterceptor::class, OkHttpHeaderInterceptor::class, ApplicationUtils::class)
 @EnableConfigurationProperties(VizClientProperties::class)
 @ConditionalOnBean(VizClientMarkerConfiguration.Marker::class)
 class VizClientInterceptorAutoConfiguration : WebMvcConfigurer {

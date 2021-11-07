@@ -19,7 +19,9 @@ class OkHttpHeaderInterceptor @Autowired constructor(
     private var applicationName: String? = null
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        applicationName ?: applicationUtils.getApplicationName()
+        if (!StringUtils.hasText(applicationName)) {
+            applicationName = applicationUtils.getApplicationName()
+        }
         val request = chain.request()
         val newRequest = request.newBuilder()
             .addHeader("MS-Port", serverPort)

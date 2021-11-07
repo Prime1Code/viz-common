@@ -34,7 +34,7 @@ class VizClientInterceptor @Autowired constructor(
     private val client = OkHttpClient()
     private val MEDIA_TYPE_JSON = APPLICATION_JSON_VALUE.toMediaType()
 
-    private lateinit var applicationName: String
+    private var applicationName: String? = null
 
     override fun postHandle(
         request: HttpServletRequest,
@@ -47,7 +47,7 @@ class VizClientInterceptor @Autowired constructor(
             val msPort = request.getHeader("MS-Port")
             val msName = request.getHeader("MS-Name")
 
-            if (applicationName.isEmpty()) {
+            if (!StringUtils.hasText(applicationName)) {
                 applicationName = applicationUtils.getApplicationName()
             }
 
@@ -56,7 +56,7 @@ class VizClientInterceptor @Autowired constructor(
                 request.remoteHost,
                 request.remoteAddr,
                 msPort ?: request.remotePort.toString(),
-                applicationName,
+                applicationName!!,
                 request.localName,
                 request.localAddr,
                 request.localPort.toString(),
@@ -90,10 +90,10 @@ class VizClientInterceptor @Autowired constructor(
 
     override fun afterPropertiesSet() {
         if (!StringUtils.hasText(vzsPort)) {
-            throw IllegalArgumentException("vssPort is null")
+            throw IllegalArgumentException("vzsPort is null")
         }
         if (!StringUtils.hasText(vzsUrl)) {
-            throw IllegalArgumentException("vssUrl is null")
+            throw IllegalArgumentException("vzsUrl is null")
         }
     }
 }
