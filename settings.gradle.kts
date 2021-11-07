@@ -1,2 +1,2 @@
-rootProject.name = "vis-common"
-include("vis-common")
+rootProject.name = "viz-common"
+include("viz-common")
