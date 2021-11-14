@@ -1,3 +1,5 @@
+# viz-common (library)
+
 The project provides all the necessary classes to visualize & monitor the request & response streams of a Spring microservice in the `viz-server-app` in a network diagram in real time. 
 
 To visualize a microservice stream, the following things need to be done:
