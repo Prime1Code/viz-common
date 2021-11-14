@@ -1,6 +1,6 @@
-package com.bestappsintown.viz.common.config
+package com.majaku.viz.common.config
 
-import com.bestappsintown.viz.common.dto.Ping
+import com.majaku.viz.common.dto.Ping
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType

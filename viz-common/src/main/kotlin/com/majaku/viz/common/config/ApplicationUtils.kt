@@ -1,4 +1,4 @@
-package com.bestappsintown.viz.common.config
+package com.majaku.viz.common.config
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBeansWithAnnotation

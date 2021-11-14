@@ -1,4 +1,4 @@
-package com.bestappsintown.viz.common.config
+package com.majaku.viz.common.config
 
 import okhttp3.Interceptor
 import okhttp3.Response

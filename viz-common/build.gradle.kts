@@ -4,7 +4,6 @@ import org.gradle.api.publish.maven.MavenPublication as MavenPublication1
 
 plugins {
     `java-library`
-    //id("org.jetbrains.kotlin.jvm") version "1.5.0"
     kotlin("jvm") version "1.5.21"
     kotlin("plugin.spring") version "1.5.21"
 
@@ -14,7 +13,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.bestappsintown"
+group = "com.majaku"
 version = "1.0.0"
 
 java {
@@ -27,7 +26,6 @@ repositories {
 }
 
 dependencies {
-    //implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 

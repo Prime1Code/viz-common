@@ -1,4 +1,4 @@
-package com.bestappsintown.viz.common.config
+package com.majaku.viz.common.config
 
 import org.springframework.context.annotation.Import
 import java.lang.annotation.Inherited

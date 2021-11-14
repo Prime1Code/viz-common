@@ -1,4 +1,4 @@
-package com.bestappsintown.viz.common.dto
+package com.majaku.viz.common.dto
 
 import java.net.URI
 import java.util.*

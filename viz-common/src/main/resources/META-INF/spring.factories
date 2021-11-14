@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.bestappsintown.viz.common.config.VizClientInterceptorAutoConfiguration
+  com.majaku.viz.common.config.VizClientInterceptorAutoConfiguration
